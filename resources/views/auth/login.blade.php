@@ -23,12 +23,12 @@
         </div>
     @endif
 
-    <form method="POST" action="">
+    <form method="POST" action="{{route('users.login')}}">
         @csrf
 
         <div class="mb-4">
             <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}"
+            <input type="email" id="email" name="correo" value="{{ old('email') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,3 +45,11 @@ Route::get('/verifySeller', function () {
 Route::get('/business', function () {
     return view('auth.seller.business');
 });
+
+
+//ruta para procesar el inicio de session de los usuarios
+Route::post('/login/usuarios',[AuthController::class,'loginUsuarios'])->name('users.login');
+//ruta para procesar el inicio de session de administradores
+Route::post('/admin',[AuthController::class, 'loginAdmin'])->name('admin.login');
+//ruta para procesar registro de usuarios consumidores 
+Route::post('/register/consumidores',[UsuariosController::class, 'registroUsuarioConsumidor'])->name("register.consumidores");
