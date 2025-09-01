@@ -26,26 +26,26 @@
         </div>
     @endif
 
-    <form method="POST" action="">
+    <form method="POST" action="{{route('register.consumidores')}}">
         @csrf
 
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre completo</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}"
+            <input type="text" id="name" name="nombre_completo" value="{{ old('nombre_completo') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>
 
         <div class="mb-4">
             <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}"
+            <input type="email" id="email" name="correo" value="{{ old('correo') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>
 
         <div class="mb-4">
             <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono</label>
-            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+            <input type="tel" id="phone" name="telefono" value="{{ old('telefono') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>
