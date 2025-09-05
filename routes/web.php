@@ -51,5 +51,48 @@ Route::get('/business', function () {
 Route::post('/login/usuarios',[AuthController::class,'loginUsuarios'])->name('users.login');
 //ruta para procesar el inicio de session de administradores
 Route::post('/admin',[AuthController::class, 'loginAdmin'])->name('admin.login');
-//ruta para procesar registro de usuarios consumidores 
+//ruta para procesar registro de usuarios consumidores
 Route::post('/register/consumidores',[UsuariosController::class, 'registroUsuarioConsumidor'])->name("register.consumidores");
+
+
+/*
+|--------------------------------------------------------------------------
+| Rutas de Admin
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboardAdmin', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/showAdmin', function () {
+    return view('admin.crudAdmin.showAdmin');
+});
+
+Route::get('/createAdmin', function () {
+    return view('admin.crudAdmin.createAdmin');
+});
+
+Route::get('/editAdmin', function () {
+    return view('admin.crudAdmin.editAdmin');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Rutas de consumidor
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboardConsumidor', function () {
+    return view('consumidor.dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Rutas de Vendedor
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboardVendedor', function () {
+    return view('vendedor.dashboard');
+});
