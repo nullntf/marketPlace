@@ -12,6 +12,12 @@ class Usuario extends Authenticatable
 
     protected $table = 'usuarios'; // Nombre de la tabla
 
+    
+     public function getAuthIdentifierName()
+    {
+        return 'correo'; 
+    }
+
     protected $fillable = [
         'nombre_completo',
         'correo',

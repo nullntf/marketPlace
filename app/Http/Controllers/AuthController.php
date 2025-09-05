@@ -12,25 +12,35 @@ class AuthController extends Controller
     //procesar login usuarios normales, vendedor o consumidor 
     public function loginUsuarios(Request $request)
     {
+        //validar datos 
         $request->validate([
             'correo' => 'required|email',
             'password' => 'required|min:8',
         ]);
+
 
         $credenciales = $request->only('correo', 'password');
 
         if (Auth::guard('web')->attempt($credenciales)) {
 
             $request->session()->regenerate();
-
-            return redirect()->intended('/'); //pagina protegida
+            $usuario = Auth::guard('web')->user();
+            //Redirigir segun el rol 
+            switch ($usuario->rol->nombre_rol) {
+                case 'Vendedor':
+                    return  redirect()->route('vista.vendedor');
+                case 'Consumidor':
+                    return redirect()->route('consumidor.vista'); //ruta a la que redirige segun el rol
+                default:
+                    return redirect('/login');
+            }
         }
-
         //si falla el login
         return back()->withErrors([
             'correo' => 'Las credenciales no son correctas',
         ]);
     }
+
 
     //login de administradores de la aplicacion
     public function loginAdmin(Request $request)
@@ -44,8 +54,24 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credenciales)) {
             $request->session()->regenerate();
-            return redirect()->intended('/login'); //pagina a la que redirige una vez hecho el inicio de session
+
+            $usuario = Auth::guard('admin')->user();
+
+            //redirige segun el rol, superAdmin, admin
+
+            switch ($usuario->rol->nombre_rol) {
+                case 'SuperAdmin':
+                    return redirect()->route('SuperAdmin.vista'); //redirige a la vista segun el rol
+                case 'Admin':
+                    return redirect()->route('Administradores.vista');
+                default:
+                    return redirect('/loginAdmin');
+            }
         }
+
+            return back()->withErrors([
+                'correo' => 'Las credenciales no son correctas',
+            ]);
     }
 
 
