@@ -30,6 +30,10 @@ class Admin extends Authenticatable
         return $this->belongsTo(Rol::class, 'rol_id');
     }
 
+      public function getAuthPassword()
+    {
+        return $this->clave;
+    }
     // ===============================
     // Funciones básicas CRUD
     // ===============================
@@ -77,5 +81,7 @@ class Admin extends Authenticatable
     {
         return Hash::check($clave, $this->clave);
     }
+
+   
 }
 

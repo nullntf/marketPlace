@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/loginAdmin', function () {
     return view('auth.admin.login');
@@ -50,7 +51,7 @@ Route::get('/business', function () {
 //ruta para procesar el inicio de session de los usuarios
 Route::post('/login/usuarios',[AuthController::class,'loginUsuarios'])->name('users.login');
 //ruta para procesar el inicio de session de administradores
-Route::post('/admin',[AuthController::class, 'loginAdmin'])->name('admin.login');
+
 //ruta para procesar registro de usuarios consumidores
 Route::post('/register/consumidores',[UsuariosController::class, 'registroUsuarioConsumidor'])->name("register.consumidores");
 
@@ -63,15 +64,18 @@ Route::post('/register/consumidores',[UsuariosController::class, 'registroUsuari
 
 Route::get('/dashboardAdmin', function () {
     return view('admin.dashboard');
-});
+})->middleware(['auth:admin', 'role:SuperAdmin'])->name('SuperAdmin.vista');
 
 Route::get('/showAdmin', function () {
     return view('admin.crudAdmin.showAdmin');
 });
 
-Route::get('/createAdmin', function () {
-    return view('admin.crudAdmin.createAdmin');
-});
+Route::get('/createAdmin', [SuperAdminController::class , 'rolesSistema']);
+
+Route::post('/admin',[AuthController::class,'loginAdmin'])->name('admin.login');
+Route::post('/loguot/admin', [AuthController::class,'logoutAdmin'])->name('logout.admin');
+Route::post('/crear/Admin', [SuperAdminController::class, ''])->name('crear.admin');
+
 
 Route::get('/editAdmin', function () {
     return view('admin.crudAdmin.editAdmin');
@@ -85,7 +89,9 @@ Route::get('/editAdmin', function () {
 
 Route::get('/dashboardConsumidor', function () {
     return view('consumidor.dashboard');
-});
+})->middleware('auth:web', 'role:Consumidor')->name('consumidor.vista');
+
+Route::post('/logoutConsumidor', [AuthController::class, 'logoutUsuarios'])->name('logout.consumidor');
 
 /*
 |--------------------------------------------------------------------------
