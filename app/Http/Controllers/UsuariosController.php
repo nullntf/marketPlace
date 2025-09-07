@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Rol;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Database\QueryException;
+
 use CreateUsersTable;
 
 class UsuariosController extends Controller
@@ -27,18 +29,27 @@ class UsuariosController extends Controller
 
         $rolConsumidor = Rol::where('nombre_rol', 'Consumidor')->first(); //buscar el rol por el nombre
 
-        $usuario = Usuario::crearUsuario([
+        try{
+              $usuario = Usuario::crearUsuario([
             'nombre_completo' => $request->nombre_completo,
             'correo' => $request->correo,
             'telefono' => $request->telefono,
             'password' => $request->password,
             'rol_id' => $rolConsumidor->id, // el rol sera consumidor, esto varia dependiendo del formulario
-
-
         ]);
 
+        }
+        catch(QueryException $e){
+            if($e->getCode()==="2300"){
+                return back()->withErrors(['correo' => 'El correo ya esta registrado', 
+                                           'telefono' => 'El numero de telefono ya existe']
+                )->withInput();
+            }
+            throw $e;
+        }
         return redirect('/login');
     }
+
 
     //registro de usuarios que seran vendedores
     public function registroUsuarioVendedor(Request $request)

@@ -54,21 +54,18 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credenciales)) {
             $request->session()->regenerate();
-
             $usuario = Auth::guard('admin')->user();
 
             //redirige segun el rol, superAdmin, admin
-
             switch ($usuario->rol->nombre_rol) {
                 case 'SuperAdmin':
                     return redirect()->route('SuperAdmin.vista'); //redirige a la vista segun el rol
                 case 'Admin':
-                    return redirect()->route('Administradores.vista');
+                    return redirect()->route('SuperAdmin.vista');
                 default:
                     return redirect('/loginAdmin');
             }
         }
-
             return back()->withErrors([
                 'correo' => 'Las credenciales no son correctas',
             ]);
