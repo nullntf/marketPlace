@@ -20,7 +20,6 @@ class Usuario extends Authenticatable
 
     protected $fillable = [
         'nombre_completo',
-        'dui',
         'correo',
         'telefono',
         'password',
@@ -30,7 +29,6 @@ class Usuario extends Authenticatable
 
     protected $hidden = [
         'password',
-        'dui'
     ];
 
     // Relación con Rol
