@@ -27,26 +27,13 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/registerCustomer', function () {
+Route::get('/registerConsumidor', function () {
     return view('auth.customer.register-form');
 });
 
-Route::get('/registerSeller', function () {
+Route::get('/registerVendedor', function () {
     return view('auth.seller.register-form');
 });
-
-Route::get('/verifyCustomer', function () {
-    return view('auth.customer.verify');
-});
-
-Route::get('/verifySeller', function () {
-    return view('auth.seller.verify');
-});
-
-Route::get('/business', function () {
-    return view('auth.seller.business');
-});
-
 
 //ruta para procesar el inicio de session de los usuarios
 Route::post('/login/usuarios',[AuthController::class,'loginUsuarios'])->name('users.login');
@@ -81,6 +68,19 @@ Route::get('/editAdmin', function () {
     return view('admin.crudAdmin.editAdmin');
 });
 
+// crud Vendedor
+Route::get('/verVendedor', function () {
+    return view('admin.crudVendedor.verVendedor');
+});
+
+Route::get('/crearVendedor', function () {
+    return view('admin.crudVendedor.crearVendedor');
+});
+
+Route::get('/editarVendedor', function () {
+    return view('admin.crudVendedor.editarVendedor');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Rutas de consumidor
@@ -103,6 +103,8 @@ Route::get('/dashboardVendedor', function () {
     return view('vendedor.dashboard');
 });
 
+// crud Producto
+
 Route::get('/verProductos', function () {
     return view('vendedor.crudProductos.verProductos');
 });
@@ -113,4 +115,14 @@ Route::get('/crearProducto', function () {
 
 Route::get('/editarProducto', function () {
     return view('vendedor.crudProductos.editarProducto');
+});
+
+// Perfil
+
+Route::get('/perfilVendedor', function () {
+    return view('vendedor.perfil.perfil');
+});
+
+Route::get('/editarPerfilVendedor', function () {
+    return view('vendedor.perfil.editarPerfil');
 });
