@@ -6,21 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    
-
-    protected $table = 'rol'; 
+    protected $table = 'rol';
 
     protected $fillable = [
         'nombre_rol',
     ];
 
-    // Relación con usuarios
-    public function usuarios()
+    // ===============================
+    // RELACIONES
+    // ===============================
+
+    // Relación con Consumidores (Usuarios)
+    public function consumidores()
     {
-        return $this->hasMany(Usuario::class, 'rol_id');
+        return $this->hasMany(Consumidor::class, 'rol_id');
     }
 
-    // Relación con admins
+    // Relación con Vendedores
+    public function vendedores()
+    {
+        return $this->hasMany(Vendedor::class, 'rol_id');
+    }
+
+    // Relación con Admins (si aplica)
     public function admins()
     {
         return $this->hasMany(Admin::class, 'rol_id');

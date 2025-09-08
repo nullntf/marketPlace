@@ -16,16 +16,16 @@ return new class extends Migration
             $table->string('descripcion');
             $table->integer('telefono');
             $table->unsignedBigInteger('id_direccion');
-            $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('id_vendedor');
             $table->timestamps();
 
              $table->foreign('id_direccion')
                   ->references('id')->on('direccion')
                   ->onDelete('restrict');
 
-             $table->foreign('id_usuario')
-                  ->references('id')->on('usuario')
-                  ->onDelete('restrict');  
+             $table->foreign('id_vendedor')
+                  ->references('id')->on('vendedor')
+                  ->onDelete('restrict');
         });
     }
 

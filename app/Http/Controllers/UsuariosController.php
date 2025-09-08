@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\Consumidor;
 use Illuminate\Database\QueryException;
 
 use CreateUsersTable;
@@ -13,7 +13,7 @@ class UsuariosController extends Controller
 {
 
 
-    //procesar registro para usuarios normales consumidores 
+    //procesar registro para usuarios normales consumidores
     public function registroUsuarioConsumidor(Request $request)
     {
 
@@ -25,12 +25,12 @@ class UsuariosController extends Controller
             'password' => 'required|string|min:8|confirmed', //confirmed espera un campo password_confirmation
         ]);
 
-        //Crear al nuevo usuario usando el modelo creado 
+        //Crear al nuevo usuario usando el modelo creado
 
         $rolConsumidor = Rol::where('nombre_rol', 'Consumidor')->first(); //buscar el rol por el nombre
 
         try{
-              $usuario = Usuario::crearUsuario([
+              $usuario = Consumidor::crearUsuario([
             'nombre_completo' => $request->nombre_completo,
             'correo' => $request->correo,
             'telefono' => $request->telefono,
@@ -41,7 +41,7 @@ class UsuariosController extends Controller
         }
         catch(QueryException $e){
             if($e->getCode()==="2300"){
-                return back()->withErrors(['correo' => 'El correo ya esta registrado', 
+                return back()->withErrors(['correo' => 'El correo ya esta registrado',
                                            'telefono' => 'El numero de telefono ya existe']
                 )->withInput();
             }
@@ -62,23 +62,23 @@ class UsuariosController extends Controller
             'telefono' => 'required|string|max:8',
             'password' => 'required|string|min:8|confirmed', //espera un campo de confirmacion de password
 
-            
+
             //datos que se guardaran en la tabla de negocios
             'nombre_negorcio' => 'required|string|max:250',
             'descripcion_negocio' => 'required|string|max:250',
             'direccion' => 'required|string|max:250',
-            'logo_negocio' => 'required|image|mimes:jpg,jpeg, png|max:2048', //guardar la imagen subida 
+            'logo_negocio' => 'required|image|mimes:jpg,jpeg, png|max:2048', //guardar la imagen subida
         ]);
         //crear un usuario en base al modelo de usuarios
-        
+
         if($request->hasFile('logo_negocio')){
             $rutaLogo = $request->file('logo_negocio')->store('logos', 'public'); //esto guarda los logos  en la ruta de storage, una vez se suba el prime logo se crea la carpeta logos
         }
 
-        //obtener el rol 
+        //obtener el rol
         $rolVendedor = Rol::where('nombre_rol', 'Vendedor')->first();
 
-            $usuario = Usuario::crearUsuario([
+            $usuario = Consumidor::crearUsuario([
                 'nombre_completo' => $request->nombre_completo,
                 'correo' => $request->correo,
                 'telefono' => $request->telefono,
@@ -90,9 +90,9 @@ class UsuariosController extends Controller
                 'rol_id' => $rolVendedor->id, //el rol sera el de vendedor aquellos que sean seleccionados
             ]);
 
-            return redirect('verficacion.vista'); 
+            return redirect('verficacion.vista');
     }
 
 
-    
+
 }
