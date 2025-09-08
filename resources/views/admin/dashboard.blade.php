@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900">
-@include('componentes.navbarAdmin')
+@include('componentes.navbar.navbarAdmin')
 <main class="min-h-screen flex items-center justify-center">
     <div class="text-center">
         <h1 class="text-5xl font-bold text-white mb-4">Admin</h1>

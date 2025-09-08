@@ -102,3 +102,15 @@ Route::post('/logoutConsumidor', [AuthController::class, 'logoutUsuarios'])->nam
 Route::get('/dashboardVendedor', function () {
     return view('vendedor.dashboard');
 });
+
+Route::get('/verProductos', function () {
+    return view('vendedor.crudProductos.verProductos');
+});
+
+Route::get('/crearProducto', function () {
+    return view('vendedor.crudProductos.crearProducto');
+});
+
+Route::get('/editarProducto', function () {
+    return view('vendedor.crudProductos.editarProducto');
+});

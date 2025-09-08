@@ -56,6 +56,13 @@
                 </div>
 
                 <div class="mb-4">
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">DUI *</label>
+                    <input type="text" id="name" name="name" value="{{ old('DUI') }}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required autofocus>
+                </div>
+
+                <div class="mb-4">
                     <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña *</label>
                     <input type="password" id="password" name="password"
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -83,9 +90,10 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="business_description" class="block text-gray-700 text-sm font-bold mb-2">Descripción del Negocio</label>
-                    <textarea id="business_description" name="business_description" rows="3"
-                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('business_description') }}</textarea>
+                    <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono del Negocio *</label>
+                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
                 </div>
 
                 <div class="mb-4">
@@ -96,10 +104,9 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="business_logo" class="block text-gray-700 text-sm font-bold mb-2">Logo del Negocio</label>
-                    <input type="file" id="business_logo" name="business_logo"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           accept="image/*">
+                    <label for="business_description" class="block text-gray-700 text-sm font-bold mb-2">Descripción del Negocio</label>
+                    <textarea id="business_description" name="business_description" rows="3"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('business_description') }}</textarea>
                 </div>
             </div>
         </div>

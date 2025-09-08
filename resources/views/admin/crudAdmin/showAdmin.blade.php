@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-900 min-h-screen">
 <!-- Navbar -->
-@include('componentes.navbarAdmin')
+@include('componentes.navbar.navbarAdmin')
 
 <!-- Main Content -->
 <div class="container mx-auto px-4 py-8">
@@ -43,7 +43,8 @@
                     <div class="text-sm text-gray-300">juan@marketplace.com</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                 Usuarios, Productos
                             </span>
                 </td>
@@ -67,7 +68,8 @@
                     <div class="text-sm text-gray-300">maria@marketplace.com</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                 Productos
                             </span>
                 </td>
@@ -101,14 +103,17 @@
             </div>
             <div>
                 <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-600">
+                    <a href="#"
+                       class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-600">
                         <span class="sr-only">Anterior</span>
                         <i class="fas fa-chevron-left"></i>
                     </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-600 bg-blue-600 text-sm font-medium text-white">
+                    <a href="#"
+                       class="relative inline-flex items-center px-4 py-2 border border-gray-600 bg-blue-600 text-sm font-medium text-white">
                         1
                     </a>
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-600">
+                    <a href="#"
+                       class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-600">
                         <span class="sr-only">Siguiente</span>
                         <i class="fas fa-chevron-right"></i>
                     </a>
@@ -121,12 +126,12 @@
 <!-- Scripts para funcionalidades -->
 <script>
     // Aquí irá la lógica JavaScript para eliminar administradores con confirmación
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const deleteButtons = document.querySelectorAll('a[href="#"]');
 
         deleteButtons.forEach(button => {
             if (button.innerHTML.includes('Eliminar')) {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.preventDefault();
                     if (confirm('¿Estás seguro de que deseas eliminar este administrador?')) {
                         // Lógica para eliminar el administrador

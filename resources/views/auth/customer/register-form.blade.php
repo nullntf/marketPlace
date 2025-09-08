@@ -30,28 +30,35 @@
         @csrf
 
         <div class="mb-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre completo</label>
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre completo *</label>
             <input type="text" id="name" name="nombre_completo" value="{{ old('nombre_completo') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>
 
         <div class="mb-4">
-            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico *</label>
             <input type="email" id="email" name="correo" value="{{ old('correo') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>
 
         <div class="mb-4">
-            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono</label>
+            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono *</label>
             <input type="tel" id="phone" name="telefono" value="{{ old('telefono') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>
 
         <div class="mb-4">
-            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">DUI *</label>
+            <input type="text" id="" name="nombre_completo" value="{{-- old('DUI') --}}"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                   required autofocus>
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña *</label>
             <input type="password" id="password" name="password"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
@@ -59,7 +66,7 @@
         </div>
 
         <div class="mb-6">
-            <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Contraseña</label>
+            <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Contraseña *</label>
             <input type="password" id="password_confirmation" name="password_confirmation"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
