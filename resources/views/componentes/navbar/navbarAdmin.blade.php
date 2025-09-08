@@ -13,8 +13,8 @@
             <a href="/dashboardAdmin" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
                 Inicio
             </a>
-            <a href="" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
-                Gestor de Solicitudes
+            <a href="/verVendedor" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
+                Gestor de Vendedores
             </a>
             <a href="/showAdmin" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
                 Gestor de Administradores

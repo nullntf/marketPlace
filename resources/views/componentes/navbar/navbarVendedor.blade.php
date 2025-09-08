@@ -20,7 +20,7 @@
             <a href="/verProductos" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
                 Productos
             </a>
-            <a href="" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+            <a href="/perfilVendedor" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
                 Perfil
             </a>
             <!-- Enlace de Cerrar Sesión -->
