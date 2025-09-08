@@ -12,10 +12,10 @@ class Usuario extends Authenticatable
 
     protected $table = 'usuarios';
 
-    
+
      public function getAuthIdentifierName()
     {
-        return 'correo'; 
+        return 'correo';
     }
 
     protected $fillable = [
