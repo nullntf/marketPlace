@@ -15,18 +15,20 @@ class Negocio extends Model
         'descripcion',
         'telefono',
         'id_direccion',
-        'id_usuario',
+        'id_vendedor',
     ];
 
     // ===============================
     // RELACIONES
     // ===============================
 
-    public function usuario()
+    // Relación con Vendedor
+    public function vendedor()
     {
-        return $this->belongsTo(Usuario::class, 'id_usuario');
+        return $this->belongsTo(Vendedor::class, 'id_vendedor');
     }
 
+    // Relación con Dirección
     public function direccion()
     {
         return $this->belongsTo(Direccion::class, 'id_direccion');
@@ -67,7 +69,7 @@ class Negocio extends Model
     }
 
     // ===============================
-    // CONSULTA CON JOIN (con la info del nombre del vendedor y la direccion del negocio)
+    // CONSULTA CON JOIN (con la info del nombre del vendedor y la dirección del negocio)
     // ===============================
 
     public static function listarNegociosConDetalles()
@@ -76,15 +78,14 @@ class Negocio extends Model
             'negocio.id',
             'negocio.descripcion',
             'negocio.telefono',
-            'usuario.nombre_completo as nombre_usuario',
+            'vendedor.nombre_vendedor as nombre_vendedor',
             'direccion.departamento',
             'direccion.municipio',
             'direccion.canton',
             'negocio.created_at'
         )
-        ->join('usuario', 'usuario.id', '=', 'negocio.id_usuario')
-        ->join('direccion', 'direccion.id', '=', 'negocio.id_direccion')
-        ->get();
+            ->join('vendedor', 'vendedor.id', '=', 'negocio.id_vendedor')
+            ->join('direccion', 'direccion.id', '=', 'negocio.id_direccion')
+            ->get();
     }
-
 }
