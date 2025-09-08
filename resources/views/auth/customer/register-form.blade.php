@@ -51,8 +51,8 @@
         </div>
 
         <div class="mb-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">DUI *</label>
-            <input type="text" id="" name="nombre_completo" value="{{-- old('DUI') --}}"
+            <label for="dui" class="block text-gray-700 text-sm font-bold mb-2">DUI *</label>
+            <input type="text" id="dui" name="dui" value="{{-- old('DUI') --}}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>
