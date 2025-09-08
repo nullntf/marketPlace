@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_completo');
-            $table->string('dui');
             $table->string('correo')->unique();
             $table->string('telefono')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('rol_id');
-            $table->string('fotoPerfil');
+            $table->string('fotoPerfil')->nullable();
             $table->timestamps();
 
             $table->foreign('rol_id')
