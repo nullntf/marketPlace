@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto - Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+@include('componentes.navbar.navbarVendedor')
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Editar Producto</h1>
+
+        {{-- Mensajes de error --}}
+        {{--
+        @if($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        --}}
+
+        <form action="{{-- route('productos.update', $producto->id) --}}" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-6">
+            {{--
+            @csrf
+            @method('PUT')
+            --}}
+
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 font-medium mb-2">Nombre del Producto</label>
+                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="Ej: Tomates orgánicos" value="Verdura Fresca" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="descripcion" class="block text-gray-700 font-medium mb-2">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="Describe tu producto..." required>Hola soy Don Carlos, un agricultor 100% Santaneco, con deseo de llevar a mi gente la mejor calidad y los mejores precios. Les tengo verduras frescas a $2.00 la 4 Libras, de lo que usted quiera corazon.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label for="precio" class="block text-gray-700 font-medium mb-2">Precio (S/)</label>
+                    <input type="number" id="precio" name="precio" step="0.01" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="0.00" value="2.00" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="categoria" class="block text-gray-700 font-medium mb-2">Categoría</label>
+                <select id="categoria" name="categoria_id" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="">Seleccione una categoría</option>
+                    {{--
+                    @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
+                    @endforeach
+                    --}}
+                </select>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 font-medium mb-2">Imagen Actual</label>
+                <div class="h-48 bg-gray-200 flex items-center justify-center rounded-md mb-2">
+                    {{--
+                    @if($producto->imagen)
+                    <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="h-full w-full object-cover">
+                    @else
+                    --}}
+                    <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    {{--
+                    @endif
+                    --}}
+                </div>
+
+                <label for="imagen" class="block text-gray-700 font-medium mb-2">Cambiar Imagen</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <p class="text-sm text-gray-500 mt-1">Deje en blanco si no desea cambiar la imagen.</p>
+            </div>
+
+            <div class="flex justify-between">
+                <a href="{{-- route('productos.index') --}}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition-colors">
+                    Cancelar
+                </a>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                    Actualizar Producto
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

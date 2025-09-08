@@ -10,21 +10,21 @@
         </div>
 
         <div class="flex space-x-4">
-            <a href="/showAdmin" class="text-gray-300 hover:text-white transition-colors duration-200">
-                Gestor de Administradores
-            </a>
-            <a href="/dashboardAdmin" class="text-gray-300 hover:text-white transition-colors duration-200">
+            <a href="/dashboardAdmin" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
                 Inicio
             </a>
-            <a href="/loguot/admin" class="text-gray-300 hover:text-white transition-colors duration-200">
-                Cerrar Sesión
+            <a href="" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
+                Gestor de Solicitudes
             </a>
+            <a href="/showAdmin" class="text-gray-300 hover:text-blue-600 transition-colors duration-200">
+                Gestor de Administradores
+            </a>
+            <form method="POST" action="{{route('logout.admin')}}">
+                @csrf
+                <button type="submit" class="text-gray-300 hover:text-red-600 transition-colors duration-200">
+                    Cerrar Sesión
+                </button>
+            </form>
         </div>
     </div>
 </nav>
-<form method="POST" action="{{route('logout.admin')}}">
-    @csrf
-    <button type="submit" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
-        Cerrar Sesión
-    </button>
-</form>

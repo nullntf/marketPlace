@@ -10,14 +10,23 @@
             </svg>
             <span class="text-xl font-bold text-gray-800">Marketplace</span>
         </div>
-
-        <!-- Enlace de Cerrar Sesión -->
-
-            <form method="POST" action="">
+        <div class="flex space-x-4">
+            <a href="" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                Tienda
+            </a>
+            <a href="" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                Chats
+            </a>
+            <a href="" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                Perfil
+            </a>
+            <!-- Enlace de Cerrar Sesión -->
+            <form method="POST" action="{{route('logout.consumidor')}}">
                 @csrf
-                <button type="submit" class="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                <button type="submit" class="text-gray-700 hover:text-red-600 transition-colors duration-200">
                     Cerrar Sesión
                 </button>
             </form>
-
+        </div>
+    </div>
 </nav>
