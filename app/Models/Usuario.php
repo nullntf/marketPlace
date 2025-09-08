@@ -10,7 +10,7 @@ class Usuario extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'usuarios'; // Nombre de la tabla
+    protected $table = 'usuarios';
 
     
      public function getAuthIdentifierName()
@@ -20,14 +20,17 @@ class Usuario extends Authenticatable
 
     protected $fillable = [
         'nombre_completo',
+        'dui',
         'correo',
         'telefono',
         'password',
+        'fotoPefil',
         'rol_id',
     ];
 
     protected $hidden = [
         'password',
+        'dui'
     ];
 
     // Relación con Rol
