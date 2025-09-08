@@ -14,11 +14,11 @@
     </div>
 
     <div class="mb-6">
-        <h2 class="text-lg font-semibold text-gray-700 mb-4">Selecciona el tipo de cuenta</h2>
+        <h2 class="text-lg font-semibold text-gray-700 mb-4 text-center">Selecciona el tipo de cuenta</h2>
 
         <div class="grid grid-cols-2 gap-4">
             <!-- Tarjeta Customer -->
-            <a href="/registerCustomer"
+            <a href="/registerConsumidor"
                class="border-2 border-gray-200 rounded-lg p-4 text-center hover:border-blue-500 hover:bg-blue-50 transition-colors">
                 <div class="mb-3">
                     <!--suppress HtmlDeprecatedAttribute -->
@@ -31,7 +31,7 @@
             </a>
 
             <!-- Tarjeta Seller -->
-            <a href="/registerSeller"
+            <a href="/registerVendedor"
                class="border-2 border-gray-200 rounded-lg p-4 text-center hover:border-green-500 hover:bg-green-50 transition-colors">
                 <div class="mb-3">
                     <!--suppress HtmlDeprecatedAttribute -->

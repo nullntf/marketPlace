@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('rol_id');
+            $table->string('fotoPerfil')->nullable();
             $table->timestamps();
 
             $table->foreign('rol_id')
                   ->references('id')->on('rol')
-                  ->onDelete('restrict'); 
+                  ->onDelete('restrict');
         });
     }
 
