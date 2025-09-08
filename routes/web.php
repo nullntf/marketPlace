@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriaProductosController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\VendedoresController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -107,10 +109,11 @@ Route::get('/verProductos', function () {
     return view('vendedor.crudProductos.verProductos');
 });
 
-Route::get('/crearProducto', function () {
-    return view('vendedor.crudProductos.crearProducto');
-});
+Route::get('/crearProducto',[CategoriaProductosController::class, 'categoriasProductos'] 
+)->middleware('auth:web', 'role:Vendedor');
 
 Route::get('/editarProducto', function () {
     return view('vendedor.crudProductos.editarProducto');
 });
+
+Route::post('/nuevoProducto', [VendedoresController::class,'nuevoProducto'])->name('nuevo.producto');
