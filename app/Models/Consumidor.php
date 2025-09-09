@@ -12,88 +12,75 @@ class Consumidor extends Authenticatable
 
     protected $table = 'consumidor';
 
-    // Indicamos que el campo de autenticación es 'correo_consumidor'
     public function getAuthIdentifierName()
     {
-        return 'correo_consumidor';
+        return 'correo';
     }
 
     protected $fillable = [
         'nombre_consumidor',
-        'correo_consumidor',
+        'correo',
         'telefono_consumidor',
-        'clave',
-        'fotoPerfil_consumidor', // ¡Corregido! Estaba mal escrito antes
+        'password',
+        'fotoPerfil_consumidor',
         'rol_id',
     ];
 
     protected $hidden = [
-        'clave',
+        'password',
     ];
 
-    // Relación con Rol
+    //==========================================
+    //Relaciones
+    //==========================================
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'rol_id');
     }
 
-
-    public function getAuthPassword()
-{
-    return $this->clave;
-}
-
-    // ===============================
-    // Funciones básicas CRUD
-    // ===============================
-
-    // Crear usuario
+    //=====================================
+    //Funciones basicas de CRUD
+    //=====================================
     public static function crearUsuario(array $datos)
     {
-        $datos['clave'] = Hash::make($datos['clave']); // encriptar contraseña
+        $datos['password'] = Hash::make($datos['password']);
         return self::create($datos);
     }
 
-    // Actualizar usuario
     public function actualizarUsuario(array $datos)
     {
-        if (isset($datos['clave'])) {
-            $datos['clave'] = Hash::make($datos['clave']);
+        if (isset($datos['password'])) {
+            $datos['password'] = Hash::make($datos['password']);
         }
         return $this->update($datos);
     }
 
-    // Eliminar usuario
     public function eliminarUsuario()
     {
         return $this->delete();
     }
 
-    // Obtener todos los usuarios
     public static function listarUsuarios()
     {
         return self::all();
     }
 
-    // Obtener consumidor por ID
     public static function obtenerPorId($id)
     {
         return self::find($id);
     }
 
-    // ===============================
-    // Funciones para login
-    // ===============================
 
-    // Buscar usuario por correo
+    //==================================
+    //Funciones de verificacion
+    //==================================
     public static function buscarPorCorreo(string $correo)
     {
-        return self::where('correo_consumidor', $correo)->first();
+        return self::where('correo', $correo)->first();
     }
 
-    // Verificar contraseña
     public function verificarPassword(string $password)
     {
-        return Hash::check($password, $this->clave);
+        return Hash::check($password, $this->password);
     }
 }
