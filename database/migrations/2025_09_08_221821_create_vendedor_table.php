@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_vendedor');
             $table->string('dui')->unique();
-            $table->string('correo_vendedor')->unique();
+            $table->string('correo')->unique();
             $table->string('telefono_vendedor');
-            $table->string('clave');
+            $table->string('password');
             $table->unsignedBigInteger('rol_id');
             $table->string('fotoPerfil_vendedor')->nullable();
             $table->timestamps();
