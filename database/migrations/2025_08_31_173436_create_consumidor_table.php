@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('consumidor', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_completo');
-            $table->string('correo')->unique();
-            $table->string('telefono')->nullable();
-            $table->string('password');
+            $table->string('nombre_consumidor');
+            $table->string('correo_consumidor')->unique();
+            $table->string('telefono_consumidor')->nullable();
+            $table->string('clave');
             $table->unsignedBigInteger('rol_id');
-            $table->string('fotoPerfil')->nullable();
+            $table->string('fotoPerfil_consumidor')->nullable();
             $table->timestamps();
 
             $table->foreign('rol_id')
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('consumidor');
     }
 };

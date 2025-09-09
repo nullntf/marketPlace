@@ -31,7 +31,7 @@
 
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre completo *</label>
-            <input type="text" id="name" name="nombre_completo" value="{{ old('nombre_completo') }}"
+            <input type="text" id="name" name="nombre_consumidor" value="{{ old('nombre_consumidor') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>
@@ -45,14 +45,14 @@
 
         <div class="mb-4">
             <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono *</label>
-            <input type="tel" id="phone" name="telefono" value="{{ old('telefono') }}"
+            <input type="tel" id="phone" name="telefono_consumidor" value="{{ old('telefono_consumidor') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>
 
         <div class="mb-4">
             <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña *</label>
-            <input type="password" id="password" name="password"
+            <input type="password" id="password" name="clave"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
             <p class="text-xs text-gray-500 mt-1">Mínimo 8 caracteres</p>
@@ -60,7 +60,7 @@
 
         <div class="mb-6">
             <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Contraseña *</label>
-            <input type="password" id="password_confirmation" name="password_confirmation"
+            <input type="password" id="clave_confirmation" name="clave_confirmation"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>

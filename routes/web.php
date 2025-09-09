@@ -64,7 +64,7 @@ Route::get('/createAdmin', [SuperAdminController::class , 'rolesSistema']);
 Route::post('/admin',[AuthController::class,'loginAdmin'])->name('admin.login');
 Route::post('/loguot/admin', [AuthController::class,'logoutAdmin'])->name('logout.admin');
 Route::post('/crear/Admin', [SuperAdminController::class, ''])->name('crear.admin');
-
+Route::post('/nuevoVendedor', [SuperAdminController::class, 'crearVendedor'])->name('crear.vendedor');
 
 Route::get('/editAdmin', function () {
     return view('admin.crudAdmin.editAdmin');

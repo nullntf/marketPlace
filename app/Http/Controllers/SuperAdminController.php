@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Direccion;
+use App\Models\Negocio;
 use Illuminate\Http\Request;
 use App\Models\Rol;
+use App\Models\Vendedor;
+use Illuminate\Database\QueryException;
 use Monolog\Handler\RollbarHandler;
+use Illuminate\Support\Facades\DB;
 
 class SuperAdminController extends Controller
 {
@@ -45,7 +50,6 @@ class SuperAdminController extends Controller
         $admin = Admin::eliminarAdmin();
     }
 
-
     //ver vendedores registrados 
     public function verVendedores(){}
 
@@ -69,5 +73,59 @@ class SuperAdminController extends Controller
         return redirect()->route('vista.administradores');
     }
 
+    //crear nuevos vendedores
+    public function crearVendedor(Request $request){
+
+        $roles = Rol::where('nombre_rol',  'Vendedor')->first();
+
+        $request->validate([
+            'nombre_vendedor' => 'required|string|max:250',
+            'correo' => 'required|string|email',
+            'telefono_vendedor' => 'required|string|max:8',
+            'clave' => 'required|string|confirmed',
+            'fotoPerfil_vendedor' => 'image|mines:png, jpeg, jpg:max:2048',
+            'nombre_negocio' => 'required|string|max:250',
+            'telefono_negocio'=> 'required|string|max:8',
+            'direccion_negocio'=> 'required|string|max:250',
+            'descripcion_negocio' => 'required|string|max:250',
+        ]);
+        
+            DB::beginTransaction();
+
+            //crear un nuevo vendedor con su modelo 
+            try{
+                $vendedor = Vendedor::crearVendedor([
+                    'nombre_vendedor' => $request->nombre_vendedor,
+                    'correo' => $request->correo,
+                    'telefono_vendedor' => $request->telefono_vendedor,
+                    'clave' => $request->clave,
+                    'rol_id' => $roles,
+                ]);
+
+                $direccionNegocio = Direccion::crearDireccion([
+                    'direccion' => $request->direccion_negocio,
+                    ''
+                ]);
+
+                $negocio = Negocio::crearNegocio([
+                    'nombre_negocio' => $request->nombre_negocio,
+                    'telefono_negocio'=> $request->telefono_negocio,
+                    'descripcion_negocio'=> $request->descripcion_negocio,
+                    'id_direccion'=> $request->id,
+                    'id_vendedor' => $request->id,
+                    
+                ]);
+                DB::commit();
+
+                return redirect('/crearVendedor');
+            }
+
+            catch(\Exception $e){
+                DB::rollBack();
+                return back()->withErrors(['error' => $e->getMessage()])->withInput();
+            }
+
+              
+    }
     
 }
