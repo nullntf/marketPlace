@@ -14,80 +14,73 @@ class Vendedor extends Authenticatable
 
     public function getAuthIdentifierName()
     {
-        return 'correo_vendedor';
+        return 'correo';
     }
 
     protected $fillable = [
         'nombre_vendedor',
         'dui',
-        'correo_vendedor',
+        'correo',
         'telefono_vendedor',
-        'clave',
+        'password',
         'fotoPerfil_vendedor',
         'rol_id',
     ];
 
     protected $hidden = [
-        'clave',
+        'password',
     ];
 
-    // Relación con Rol
+    //============================================
+    //Relaciones
+    //============================================
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'rol_id');
     }
 
-    // ===============================
-    // Funciones básicas CRUD
-    // ===============================
-
-    // Crear vendedor
+    //=========================================
+    //Funciones basicas del crud
+    //=========================================
     public static function crearVendedor(array $datos)
     {
-        $datos['clave'] = Hash::make($datos['clave']);
+        $datos['password'] = Hash::make($datos['password']);
         return self::create($datos);
     }
 
-    // Actualizar vendedor
     public function actualizarVendedor(array $datos)
     {
-        if (isset($datos['clave'])) {
-            $datos['clave'] = Hash::make($datos['clave']);
+        if (isset($datos['password'])) {
+            $datos['password'] = Hash::make($datos['password']);
         }
         return $this->update($datos);
     }
 
-    // Eliminar vendedor
     public function eliminarVendedor()
     {
         return $this->delete();
     }
 
-    // Obtener todos los vendedores
     public static function listarVendedores()
     {
         return self::all();
     }
 
-    // Obtener vendedor por ID
     public static function obtenerPorId($id)
     {
         return self::find($id);
     }
 
-    // ===============================
-    // Funciones para login
-    // ===============================
-
-    // Buscar vendedor por correo
+    //========================================
+    //Funciones de verificacion
+    //========================================
     public static function buscarPorCorreo(string $correo)
     {
-        return self::where('correo_vendedor', $correo)->first();
+        return self::where('correo', $correo)->first();
     }
 
-    // Verificar contraseña
     public function verificarPassword(string $password)
     {
-        return Hash::check($password, $this->clave);
+        return Hash::check($password, $this->password);
     }
 }

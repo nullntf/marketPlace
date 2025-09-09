@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('consumidor', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_consumidor');
-            $table->string('correo_consumidor')->unique();
+            $table->string('correo')->unique();
             $table->string('telefono_consumidor')->nullable();
-            $table->string('clave');
+            $table->string('password');
             $table->unsignedBigInteger('rol_id');
             $table->string('fotoPerfil_consumidor')->nullable();
             $table->timestamps();
