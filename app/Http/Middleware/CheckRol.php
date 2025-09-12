@@ -21,9 +21,9 @@ class CheckRol
             $currentGuard = 'admin';
         }
         // Si no hay usuario admin, verificar el guard web (usuarios normales)
-        elseif (Auth::guard('web')->check()) {
-            $user = Auth::guard('web')->user();
-            $currentGuard = 'web';
+        elseif (Auth::guard('consumidor')->check()) {
+            $user = Auth::guard('consumidor')->user();
+            $currentGuard = 'consumidor';
         }
 
         // Si no hay usuario logueado en ningún guard

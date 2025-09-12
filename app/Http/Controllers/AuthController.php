@@ -21,10 +21,10 @@ class AuthController extends Controller
 
         $credenciales = $request->only('correo', 'password');
 
-        if (Auth::guard('web')->attempt($credenciales)) {
+        if (Auth::guard('consumidor')->attempt($credenciales)) {
 
             $request->session()->regenerate();
-            $usuario = Auth::guard('web')->user();
+            $usuario = Auth::guard('consumidor')->user();
             //Redirigir segun el rol 
             switch ($usuario->rol->nombre_rol) {
                 case 'Vendedor':

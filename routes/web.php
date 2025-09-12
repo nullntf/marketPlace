@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriaProductosController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ConsumidorController;
+use App\Http\Controllers\VendedoresController;
+use App\Models\Consumidor;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,7 +43,7 @@ Route::post('/login/usuarios',[AuthController::class,'loginUsuarios'])->name('us
 //ruta para procesar el inicio de session de administradores
 
 //ruta para procesar registro de usuarios consumidores
-Route::post('/register/consumidores',[UsuariosController::class, 'registroUsuarioConsumidor'])->name("register.consumidores");
+Route::post('/register/consumidores',[ConsumidorController::class, 'registroUsuarioConsumidor'])->name("register.consumidores");
 
 
 /*
@@ -62,6 +65,7 @@ Route::get('/createAdmin', [SuperAdminController::class , 'rolesSistema']);
 Route::post('/admin',[AuthController::class,'loginAdmin'])->name('admin.login');
 Route::post('/loguot/admin', [AuthController::class,'logoutAdmin'])->name('logout.admin');
 Route::post('/crear/Admin', [SuperAdminController::class, ''])->name('crear.admin');
+Route::post('/nuevo/Vendedor', [SuperAdminController::class, 'crearVendedor'])->name('crear.vendedor');
 
 
 Route::get('/editAdmin', function () {
@@ -73,9 +77,7 @@ Route::get('/verVendedor', function () {
     return view('admin.crudVendedor.verVendedor');
 });
 
-Route::get('/crearVendedor', function () {
-    return view('admin.crudVendedor.crearVendedor');
-});
+Route::get('/crearVendedor',[SuperAdminController::class, 'obtenerDirecciones']);
 
 Route::get('/editarVendedor', function () {
     return view('admin.crudVendedor.editarVendedor');
@@ -89,9 +91,14 @@ Route::get('/editarVendedor', function () {
 
 Route::get('/dashboardConsumidor', function () {
     return view('consumidor.dashboard');
-})->middleware('auth:web', 'role:Consumidor')->name('consumidor.vista');
+})->middleware('auth:consumidor', 'role:Consumidor')->name('consumidor.vista');
 
 Route::post('/logoutConsumidor', [AuthController::class, 'logoutUsuarios'])->name('logout.consumidor');
+
+
+Route::get('/perfil', [ConsumidorController::class, 'perfilConsumidor'])
+->middleware('auth:consumidor, role:Consumidor')
+->name('perfil.consumidor');
 
 /*
 |--------------------------------------------------------------------------
@@ -109,9 +116,8 @@ Route::get('/verProductos', function () {
     return view('vendedor.crudProductos.verProductos');
 });
 
-Route::get('/crearProducto', function () {
-    return view('vendedor.crudProductos.crearProducto');
-});
+Route::get('/crearProducto',[CategoriaProductosController::class, 'categoriasProductos'] 
+)->middleware('auth:web', 'role:Vendedor');
 
 Route::get('/editarProducto', function () {
     return view('vendedor.crudProductos.editarProducto');
@@ -126,3 +132,5 @@ Route::get('/perfilVendedor', function () {
 Route::get('/editarPerfilVendedor', function () {
     return view('vendedor.perfil.editarPerfil');
 });
+
+Route::post('/nuevoProducto', [VendedoresController::class,'nuevoProducto'])->name('nuevo.producto');

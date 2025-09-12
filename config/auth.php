@@ -45,6 +45,14 @@ return [
         'driver' => 'session',
         'provider' => 'admins',
     ],
+        'consumidor' =>[
+            'driver'=> 'session',
+            'provider'=> 'consumidor'
+        ],
+        'vendedores' => [
+            'driver' => 'session',
+            'provider' => 'vendedor'
+        ],
     ],
 
     /*
@@ -65,18 +73,23 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' =>App\Models\Consumidor::class,
-            'table' => 'usuarios',
-        ],
-
+        
         'admins' =>[
             'driver'=>'eloquent',
             'model' => App\Models\Admin::class,
-            'table' => 'admin',
         ],
 
+        'consumidor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Consumidor::class,
+        ],
+
+        'vendedor' => [
+            'driver'=> 'eloquent',
+            'model' => App\Models\Vendedor::class,
+        ],
+
+        
 
         // 'users' => [
         //     'driver' => 'database',
