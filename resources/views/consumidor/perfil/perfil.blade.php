@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
 
-@include('componentes.navbar.navbarVendedor')
+@include('componentes.navbar.navbarConsumidor')
 <!-- Navbar -->
 {{-- Incluir navbar según el tipo de usuario --}}
 {{-- @auth --}}
@@ -33,8 +33,8 @@
                 </div>
             </div>
             <div class="ml-4 text-white mb-2">
-                <h1 class="text-2xl font-bold">{{-- $vendedor->name --}} Juan Pérez</h1>
-                <p class="text-lg">{{-- $vendedor->business_name --}} Verduras Don Juan</p>
+                <h1 class="text-2xl font-bold">{{$usuarios->nombre_consumidor}}</h1>
+                <p class="text-lg">{{$usuarios->coreo}}</p>
             </div>
         </div>
     </div>
@@ -44,55 +44,33 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Información del vendedor -->
             <div class="md:col-span-2">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Información del Vendedor</h2>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Información del Consumidor</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
                         <h3 class="text-sm font-medium text-gray-500">Nombre completo</h3>
-                        <p class="text-gray-800">{{-- $vendedor->name --}} Juan Pérez</p>
+                        <p class="text-gray-800">{{$usuarios->nombre_consumidor}}</p>
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-500">Correo electrónico</h3>
-                        <p class="text-gray-800">{{-- $vendedor->email --}} juan@marketplace.com</p>
+                        <p class="text-gray-800">{{$usuarios->correo}}</p>
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-500">Teléfono</h3>
-                        <p class="text-gray-800">{{-- $vendedor->phone --}} +1234567890</p>
+                        <p class="text-gray-800">{{$usuarios->telefono_consumidor}}</p>
                     </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500">Nombre del negocio</h3>
-                        <p class="text-gray-800">{{-- $vendedor->business_name --}} Verduras Don Juan</p>
-                    </div>
+                   
                 </div>
-
-                <div class="mb-6">
-                    <h3 class="text-sm font-medium text-gray-500">Dirección del negocio</h3>
-                    <p class="text-gray-800">{{-- $vendedor->business_address --}} Calle Principal #123, Santa Ana</p>
-                </div>
-
-                <div class="mb-6">
-                    <h3 class="text-sm font-medium text-gray-500">Descripción del negocio</h3>
-                    <p class="text-gray-800">{{-- $vendedor->business_description --}} Ofrecemos las mejores verduras orgánicas de la región, cultivadas con amor y cuidado para nuestros clientes.</p>
-                </div>
-            </div>
 
             <!-- Información de contacto y estadísticas -->
             <div class="bg-gray-50 rounded-lg p-4">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Contacto y Estadísticas</h2>
-
-                <div class="mb-4">
-                    <h3 class="text-sm font-medium text-gray-500">Ubicación</h3>
-                    <p class="text-gray-800 flex items-center">
-                        <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
-                        {{-- $vendedor->ubicacion --}} Santa Ana
-                    </p>
-                </div>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Contacto</h2>
 
                 <div class="mb-4">
                     <h3 class="text-sm font-medium text-gray-500">Teléfono del negocio</h3>
                     <p class="text-gray-800 flex items-center">
                         <i class="fas fa-phone text-blue-500 mr-2"></i>
-                        {{-- $vendedor->business_phone --}} +1234567890
+                        {{$usuarios->telefono_consumidor}}
                     </p>
                 </div>
 

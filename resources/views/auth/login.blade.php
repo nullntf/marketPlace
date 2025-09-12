@@ -28,14 +28,14 @@
 
         <div class="mb-4">
             <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
-            <input type="email" id="correo" name="correo" value="{{ old('correo') }}"
+            <input type="email" id="correo" name="correo" value="{{ old('email') }}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required autofocus>
         </div>
 
         <div class="mb-6">
             <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
-            <input type="password" id="password" name="clave"
+            <input type="password" id="password" name="password"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                    required>
         </div>

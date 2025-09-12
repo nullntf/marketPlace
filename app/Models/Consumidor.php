@@ -30,6 +30,8 @@ class Consumidor extends Authenticatable
         'password',
     ];
 
+    
+
     //==========================================
     //Relaciones
     //==========================================

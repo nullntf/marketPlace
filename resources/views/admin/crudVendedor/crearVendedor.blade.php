@@ -32,9 +32,9 @@
         @endif
         --}}
 
-        <form method="POST" action="{{-- route('vendedores.store') --}}" enctype="multipart/form-data">
-            {{-- @csrf --}}
-
+        <form method="POST" action="{{route('crear.vendedor')}}" enctype="multipart/form-data">
+             @csrf
+as
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Información Personal -->
                 <div>
@@ -42,21 +42,28 @@
 
                     <div class="mb-4">
                         <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nombre completo *</label>
-                        <input type="text" id="name" name="name" value="{{-- old('name') --}}"
+                        <input type="text" id="name" name="nombre_vendedor" value="{{old('nombre_vendedor')}}"
+                               class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               required autofocus>
+                    </div>
+
+                     <div class="mb-4">
+                        <label for="dui" class="block text-gray-300 text-sm font-bold mb-2">Dui *</label>
+                        <input type="text" id="dui" name="dui" value="{{old('dui')}}"
                                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                required autofocus>
                     </div>
 
                     <div class="mb-4">
                         <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Correo Electrónico *</label>
-                        <input type="email" id="email" name="email" value="{{-- old('email') --}}"
+                        <input type="email" id="email" name="correo" value="{{old('correo')}}"
                                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                required>
                     </div>
 
                     <div class="mb-4">
                         <label for="phone" class="block text-gray-300 text-sm font-bold mb-2">Teléfono *</label>
-                        <input type="tel" id="phone" name="phone" value="{{-- old('phone') --}}"
+                        <input type="tel" id="phone" name="telefono_vendedor" value="{{old('telefono_vendedor')}}"
                                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                required>
                     </div>
@@ -83,29 +90,54 @@
 
                     <div class="mb-4">
                         <label for="business_name" class="block text-gray-300 text-sm font-bold mb-2">Nombre del Negocio *</label>
-                        <input type="text" id="business_name" name="business_name" value="{{-- old('business_name') --}}"
+                        <input type="text" id="business_name" name="nombre" value="{{-- old('nombre') --}}"
                                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                required>
                     </div>
 
                     <div class="mb-4">
                         <label for="business_phone" class="block text-gray-300 text-sm font-bold mb-2">Teléfono del Negocio *</label>
-                        <input type="tel" id="business_phone" name="business_phone" value="{{-- old('business_phone') --}}"
+                        <input type="tel" id="business_phone" name="telefono" value="{{-- old('telefono') --}}"
                                class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                required>
                     </div>
 
+
                     <div class="mb-4">
-                        <label for="business_address" class="block text-gray-300 text-sm font-bold mb-2">Dirección del Negocio *</label>
-                        <textarea id="business_address" name="business_address" rows="2"
-                                  class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                  required>{{-- old('business_address') --}}</textarea>
+                      <label for="">Departamento</label>
+                      <select name="direccion_departamento" required>
+                           <option value="">-- Seleccionar departamento --</option>
+                            @foreach ($departamento as $depa)
+                                <option value="{{ $depa->id }}">{{ $depa->departamento }}</option>
+                            @endforeach
+                      </select>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                      <label for="">Municipio</label>
+                      <select name="direccion_municipio" required>
+                               <option value="">-- Seleccionar Municipio --</option>
+                            @foreach ($departamento as $depa)
+                                <option value="{{ $depa->id }}">{{ $depa->municipio }}</option>
+                            @endforeach
+                      </select>
                     </div>
 
                     <div class="mb-4">
+                      <label for="">Canton</label>
+                           <select name="direccion_municipio" required>
+                               <option value="">-- Seleccionar Canton--</option>
+                            @foreach ($departamento as $depa)
+                                <option value="{{ $depa->id }}">{{ $depa->canton}}</option>
+                            @endforeach
+                      </select>
+                    </div>
+                    
+                    <div class="mb-4">
                         <label for="business_description" class="block text-gray-300 text-sm font-bold mb-2">Descripción del Negocio</label>
-                        <textarea id="business_description" name="business_description" rows="3"
-                                  class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500">{{-- old('business_description') --}}</textarea>
+                        <textarea id="business_description" name="descripcion" rows="3"
+                                  class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500">{{old('descripcion')}}</textarea>
                     </div>
 
                     <div class="mb-4">

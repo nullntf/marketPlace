@@ -6,10 +6,11 @@ use App\Models\Rol;
 use Illuminate\Http\Request;
 use App\Models\Consumidor;
 use Illuminate\Database\QueryException;
-
 use CreateUsersTable;
+use Illuminate\Support\Facades\Auth;
 
-class UsuariosController extends Controller
+
+class ConsumidorController extends Controller
 {
 
 
@@ -20,9 +21,9 @@ class UsuariosController extends Controller
         //validacion de datos
         $request->validate([
             'nombre_consumidor' => 'required|string|max:255',
-            'correo' => 'required|email|unique:usuarios,correo',
+            'correo' => 'required|email|unique:consumidor,correo',
             'telefono_consumidor' => 'required|string|max:8',
-            'clave' => 'required|string|min:8|confirmed', //confirmed espera un campo password_confirmation
+            'password' => 'required|string|min:8|confirmed', //confirmed espera un campo password_confirmation
         ]);
 
     
@@ -34,11 +35,11 @@ class UsuariosController extends Controller
 
         //Crear al nuevo usuario usando el modelo creado
         try{
-              $usuario = Consumidor::crearUsuario([
+            $usuario = Consumidor::crearUsuario([
             'nombre_consumidor' => $request->nombre_consumidor,
-            'correo' => $request->correo_consumidor,
+            'correo' => $request->correo,
             'telefono_consumidor' => $request->telefono_consumidor,
-            'clave' => $request->clave,
+            'password' => $request->password,
             'rol_id' => $rolConsumidor->id, // el rol sera consumidor, esto varia dependiendo del formulario
         ]);
 
@@ -52,13 +53,20 @@ class UsuariosController extends Controller
         }
         return redirect('/login');
     }
+    
 
+    //mostrar el perfil de el usuario
+    public function perfilConsumidor(){
 
-    //registro de usuarios que seran vendedores
-    public function registroUsuarioVendedor(Request $request)
-    {
-       
+        $usuarios = Auth::guard('consumidor')->user();
+
+            if(!$usuarios){
+                return redirect('/login')->withErrors('Debes de iniciar session');
+            }
+
+            return view('consumidor.perfil.perfil', compact('usuarios')); //retornamos la vista en donde se vera el perfil
     }
+    
 
 
 

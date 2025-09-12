@@ -16,11 +16,16 @@ class SuperAdminController extends Controller
 {
     //agregar nuevos administradores
 
+
     public function rolesSistema(){
        $roles = Rol::all();
         return view('admin.crudAdmin.createAdmin', compact('roles'));
     }
-
+    
+    public function obtenerDirecciones(){
+        $departamento = Direccion::all();
+        return view('admin.crudVendedor.crearVendedor', compact('departamento'));
+    }
 
     public function nuevoAdmin(Request $request){
 
@@ -80,14 +85,15 @@ class SuperAdminController extends Controller
 
         $request->validate([
             'nombre_vendedor' => 'required|string|max:250',
+            'dui' => 'required|string|max:10',
             'correo' => 'required|string|email',
             'telefono_vendedor' => 'required|string|max:8',
-            'clave' => 'required|string|confirmed',
+            'password' => 'required|string|confirmed',
             'fotoPerfil_vendedor' => 'image|mines:png, jpeg, jpg:max:2048',
             'nombre_negocio' => 'required|string|max:250',
-            'telefono_negocio'=> 'required|string|max:8',
-            'direccion_negocio'=> 'required|string|max:250',
-            'descripcion_negocio' => 'required|string|max:250',
+            'telefono'=> 'required|string|max:8',
+            'direccion'=> 'required|string|max:250',
+            'descripcion' => 'required|string|max:250',
         ]);
         
             DB::beginTransaction();
@@ -97,9 +103,10 @@ class SuperAdminController extends Controller
                 $vendedor = Vendedor::crearVendedor([
                     'nombre_vendedor' => $request->nombre_vendedor,
                     'correo' => $request->correo,
+                    'dui'=> $request->dui,
                     'telefono_vendedor' => $request->telefono_vendedor,
-                    'clave' => $request->clave,
-                    'rol_id' => $roles,
+                    'password' => $request->password,
+                    'rol_id' => $roles, 
                 ]);
 
                 $direccionNegocio = Direccion::crearDireccion([
@@ -109,15 +116,15 @@ class SuperAdminController extends Controller
 
                 $negocio = Negocio::crearNegocio([
                     'nombre_negocio' => $request->nombre_negocio,
-                    'telefono_negocio'=> $request->telefono_negocio,
-                    'descripcion_negocio'=> $request->descripcion_negocio,
+                    'telefono'=> $request->telefono,
+                    'descripcion'=> $request->descripcion,
                     'id_direccion'=> $request->id,
                     'id_vendedor' => $request->id,
                     
                 ]);
-                DB::commit();
 
-                return redirect('/crearVendedor');
+                DB::commit();
+                return redirect('/verVendedor');
             }
 
             catch(\Exception $e){
